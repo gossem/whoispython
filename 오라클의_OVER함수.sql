@@ -1,5 +1,5 @@
 /* 1. OVER 함수는 그룹함수(analytic function)를 포함하는 서브쿼리를 간소화 처리해서 쿼리의 양을 줄여주는 함수이다. 
-제공 : http://www.whoispython.com 
+제공 : http://www.whoispython.com / https://www.youtube.com/channel/UCEYd78gT_f-G9aD6y1cFUtw / 
 */
 
 /* 1.1. 테이블 생성(삼성전자 냉장고 상품명별 판매량 테이블) */
@@ -57,6 +57,7 @@ FROM ( SELECT S_NAME, SUM(S_COUNT) 부분합 FROM sell_elec GROUP BY s_name );
 
 
 /* OVER 함수는 그룹함수(analytic function)를 포함하는 서브쿼리를 간소화 처리해서 쿼리의 양을 줄여주는 함수이다. 
-제공 : http://www.whoispython.com 
+제공 : http://www.whoispython.com / https://www.youtube.com/channel/UCEYd78gT_f-G9aD6y1cFUtw / 
+
 */
 
