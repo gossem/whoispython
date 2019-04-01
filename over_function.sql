@@ -1,4 +1,4 @@
-/* 1. OVER 함수는 그룹함수(analytic function)를 포함하는 서브쿼리를 간소화 처리해서 쿼리의 양을 줄여주는 함수이다. 
+/* 1. 오라클의 OVER 함수는 그룹함수(analytic function)를 포함하는 서브쿼리를 간소화 처리해서 쿼리의 양을 줄여주는 함수이다. 
 제공 : http://www.whoispython.com 
 */
 
