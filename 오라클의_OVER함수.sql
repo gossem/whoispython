@@ -1,59 +1,59 @@
-/* 1. OVER ÇÔ¼ö´Â ±×·ìÇÔ¼ö(analytic function)¸¦ Æ÷ÇÔÇÏ´Â ¼­ºêÄõ¸®¸¦ °£¼ÒÈ­ Ã³¸®ÇØ¼­ Äõ¸®ÀÇ ¾çÀ» ÁÙ¿©ÁÖ´Â ÇÔ¼öÀÌ´Ù. 
-Á¦°ø : http://www.whoispython.com 
+/* 1. OVER í•¨ìˆ˜ëŠ” ê·¸ë£¹í•¨ìˆ˜(analytic function)ë¥¼ í¬í•¨í•˜ëŠ” ì„œë¸Œì¿¼ë¦¬ë¥¼ ê°„ì†Œí™” ì²˜ë¦¬í•´ì„œ ì¿¼ë¦¬ì˜ ì–‘ì„ ì¤„ì—¬ì£¼ëŠ” í•¨ìˆ˜ì´ë‹¤. 
+ì œê³µ : http://www.whoispython.com 
 */
 
-/* 1.1. Å×ÀÌºí »ý¼º(»ï¼ºÀüÀÚ ³ÃÀå°í »óÇ°¸íº° ÆÇ¸Å·® Å×ÀÌºí) */
+/* 1.1. í…Œì´ë¸” ìƒì„±(ì‚¼ì„±ì „ìž ëƒ‰ìž¥ê³  ìƒí’ˆëª…ë³„ íŒë§¤ëŸ‰ í…Œì´ë¸”) */
 -- DROP TABLE sell_elec
 CREATE TABLE sell_elec (
-  s_name NVARCHAR2(20) -- »óÇ°¸í
-  , s_count NUMBER  -- ÆÇ¸Å´ë¼ö
+  s_name NVARCHAR2(20) -- ìƒí’ˆëª…
+  , s_count NUMBER  -- íŒë§¤ëŒ€ìˆ˜
 );
 
 SELECT * FROM SELL_ELEC;
-/* 1.2. Å×ÀÌºí¿¡ µ¥ÀÌÅÍ Ãß°¡ */
+/* 1.2. í…Œì´ë¸”ì— ë°ì´í„° ì¶”ê°€ */
 INSERT INTO sell_elec VALUES ('T9000', 3);
 INSERT INTO sell_elec VALUES ('T9000', 1);
 INSERT INTO sell_elec VALUES ('T9000', 2);
 --
-INSERT INTO sell_elec VALUES ('TÅ¸ÀÔºôÆ®ÀÎ', 10);
-INSERT INTO sell_elec VALUES ('TÅ¸ÀÔºôÆ®ÀÎ', 5);
-INSERT INTO sell_elec VALUES ('TÅ¸ÀÔºôÆ®ÀÎ', 3);
+INSERT INTO sell_elec VALUES ('Tíƒ€ìž…ë¹ŒíŠ¸ì¸', 10);
+INSERT INTO sell_elec VALUES ('Tíƒ€ìž…ë¹ŒíŠ¸ì¸', 5);
+INSERT INTO sell_elec VALUES ('Tíƒ€ìž…ë¹ŒíŠ¸ì¸', 3);
 --
-INSERT INTO sell_elec VALUES ('Çªµå¼îÄÉÀÌ½º³ÃÀå°í', 3);
-INSERT INTO sell_elec VALUES ('Çªµå¼îÄÉÀÌ½º³ÃÀå°í', 8);
-INSERT INTO sell_elec VALUES ('Çªµå¼îÄÉÀÌ½º³ÃÀå°í', 1);
-INSERT INTO sell_elec VALUES ('Çªµå¼îÄÉÀÌ½º³ÃÀå°í', 4);
+INSERT INTO sell_elec VALUES ('í‘¸ë“œì‡¼ì¼€ì´ìŠ¤ëƒ‰ìž¥ê³ ', 3);
+INSERT INTO sell_elec VALUES ('í‘¸ë“œì‡¼ì¼€ì´ìŠ¤ëƒ‰ìž¥ê³ ', 8);
+INSERT INTO sell_elec VALUES ('í‘¸ë“œì‡¼ì¼€ì´ìŠ¤ëƒ‰ìž¥ê³ ', 1);
+INSERT INTO sell_elec VALUES ('í‘¸ë“œì‡¼ì¼€ì´ìŠ¤ëƒ‰ìž¥ê³ ', 4);
 --
 COMMIT;
 SELECT * FROM SELL_ELEC;
 
-/* 1.3. Áý°èÇÕ¼ö¸¸ »ç¿ëÇÑ °æ¿ì */
-SELECT SUM(S_COUNT) ÃÑÇÕ FROM SELL_ELEC;
+/* 1.3. ì§‘ê³„í•©ìˆ˜ë§Œ ì‚¬ìš©í•œ ê²½ìš° */
+SELECT SUM(S_COUNT) ì´í•© FROM SELL_ELEC;
 
-/* 1.4. ±×·ì¹ÙÀÌ(GROUP BY), ¿À´õ¹ÙÀÌ(ORDER BY)¸¦ ÇÔ²² »ç¿ëÇÑ Äõ¸® */
-SELECT S_NAME, SUM(S_COUNT) ±×·ìº°ÇÕ FROM sell_elec GROUP BY s_name;
+/* 1.4. ê·¸ë£¹ë°”ì´(GROUP BY)ë¥¼ í•¨ê»˜ ì‚¬ìš©í•œ ì¿¼ë¦¬ */
+SELECT S_NAME, SUM(S_COUNT) ê·¸ë£¹ë³„í•© FROM sell_elec GROUP BY s_name;
 
-/* 1.5. ÃÑÇÕ¿¡¼­ ±×·ìº°ÇÕÀÇ ºñÀ²  */
-SELECT  S_NAME, ( ºÎºÐÇÕ / (SELECT SUM(S_COUNT) FROM SELL_ELEC) ) * 100 AS Á¦Ç°º°ÆÇ¸ÅÁ¡À¯À² 
-FROM ( SELECT S_NAME, SUM(S_COUNT) ºÎºÐÇÕ FROM sell_elec GROUP BY s_name );
+/* 1.5. ì´í•©ì—ì„œ ê·¸ë£¹ë³„í•©ì˜ ë¹„ìœ¨  */
+SELECT  S_NAME, ( ë¶€ë¶„í•© / (SELECT SUM(S_COUNT) FROM SELL_ELEC) ) * 100 AS ì œí’ˆë³„íŒë§¤ì ìœ ìœ¨ 
+FROM ( SELECT S_NAME, SUM(S_COUNT) ë¶€ë¶„í•© FROM sell_elec GROUP BY s_name );
 
-/* 1.6. OVER() ÇÔ¼ö·Î ¼­ºêÄõ¸® °£¼ÒÈ­ -- ÀüÃ¼ÆÇ¸Å·®°ú °¢°¢ÀÇ ÆÇ¸Å·® ºñ±³ */
-SELECT  S_NAME, S_COUNT, SUM(S_COUNT) OVER () AS ÀüÃ¼ÆÇ¸Å·®
+/* 1.6. OVER() í•¨ìˆ˜ë¡œ ì„œë¸Œì¿¼ë¦¬ ê°„ì†Œí™” -- ì „ì²´íŒë§¤ëŸ‰ê³¼ ê°ê°ì˜ íŒë§¤ëŸ‰ ë¹„êµ */
+SELECT  S_NAME, S_COUNT, SUM(S_COUNT) OVER () AS ì „ì²´íŒë§¤ëŸ‰
 FROM sell_elec;
 
-/* 1.7. OVER() ÇÔ¼ö·Î ¼­ºêÄõ¸® °£¼ÒÈ­ -- ÀüÃ¼ÆÇ¸Å·®°ú °¢°¢ÀÇ ÆÇ¸Å·® ºñ±³ */
-SELECT  S_NAME, S_COUNT, S_COUNT / ( SUM(S_COUNT ) OVER ()) * 100 AS Á¦Ç°º°ÆÇ¸ÅÁ¡À¯À² 
+/* 1.7. OVER() í•¨ìˆ˜ë¡œ ì„œë¸Œì¿¼ë¦¬ ê°„ì†Œí™” -- ì „ì²´íŒë§¤ëŸ‰ê³¼ ê°ê°ì˜ íŒë§¤ëŸ‰ ë¹„êµ */
+SELECT  S_NAME, S_COUNT, S_COUNT / ( SUM(S_COUNT ) OVER ()) * 100 AS ì œí’ˆë³„íŒë§¤ì ìœ ìœ¨ 
 FROM sell_elec;
 
-/* 1.8. OVER() ÇÔ¼ö·Î ¼­ºêÄõ¸® °£¼ÒÈ­ --  Á¦Ç°Á¾·ùº° ÆÇ¸Å°Çº° Á¡À¯À² */
-SELECT  S_NAME, SUM(Á¦Ç°º°ÆÇ¸ÅÁ¡À¯À²) Á¦Ç°º°ÆÇ¸ÅÁ¡À¯À²
+/* 1.8. OVER() í•¨ìˆ˜ë¡œ ì„œë¸Œì¿¼ë¦¬ ê°„ì†Œí™” --  ì œí’ˆì¢…ë¥˜ë³„ íŒë§¤ê±´ë³„ ì ìœ ìœ¨ */
+SELECT  S_NAME, SUM(ì œí’ˆë³„íŒë§¤ì ìœ ìœ¨) ì œí’ˆë³„íŒë§¤ì ìœ ìœ¨
 FROM 
-( SELECT  S_NAME, S_COUNT, S_COUNT / ( SUM(S_COUNT) OVER ()) * 100 AS Á¦Ç°º°ÆÇ¸ÅÁ¡À¯À² 
+( SELECT  S_NAME, S_COUNT, S_COUNT / ( SUM(S_COUNT) OVER ()) * 100 AS ì œí’ˆë³„íŒë§¤ì ìœ ìœ¨ 
 FROM sell_elec ) GROUP BY S_NAME;
 
 
-SELECT  S_NAME, ( ºÎºÐÇÕ / SUM(ºÎºÐÇÕ) OVER () ) * 100 AS Á¦Ç°º°ÆÇ¸ÅÁ¡À¯À² 
-FROM ( SELECT S_NAME, SUM(S_COUNT) ºÎºÐÇÕ FROM sell_elec GROUP BY s_name );
+SELECT  S_NAME, ( ë¶€ë¶„í•© / SUM(ë¶€ë¶„í•©) OVER () ) * 100 AS ì œí’ˆë³„íŒë§¤ì ìœ ìœ¨ 
+FROM ( SELECT S_NAME, SUM(S_COUNT) ë¶€ë¶„í•© FROM sell_elec GROUP BY s_name );
 
 
 SELECT S_NAME, S_COUNT OVER(ORDER BY S_NAME) S_COUNT  FROM sell_elec;
