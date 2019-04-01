@@ -51,13 +51,9 @@ FROM
 ( SELECT  S_NAME, S_COUNT, S_COUNT / ( SUM(S_COUNT) OVER ()) * 100 AS 제품별판매점유율 
 FROM sell_elec ) GROUP BY S_NAME;
 
-
-
-
-
-SELECT  S_NAME, ( 부분합 / SUM(부분합) OVER () ) * 100 AS 제품별판매점유율 
-FROM ( SELECT S_NAME, SUM(S_COUNT) 부분합 FROM sell_elec GROUP BY s_name );
-
-
-SELECT S_NAME, S_COUNT OVER(ORDER BY S_NAME) S_COUNT  FROM sell_elec;
+ 
+/* 기억하세요! 이게 핵심입니다. 
+ OVER 함수는 그룹함수(analytic function)를 포함하는 서브쿼리를 간소화 처리해서 쿼리의 양을 줄여주는 함수이다. 
+제공 : http://www.whoispython.com 
+*/
 
