@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>{{ title }}</title>
+	{% load static %} 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet" />
+    <link href="{% static 'fontawesome/css/all.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'css/tooplate-chilling-cafe.css' %}" rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style> * { font-size: 12px; } body { background-color: gold;}</style>
+  </head>
+  <body>
+    <div class="tm-container">
+      <div class="tm-text-white tm-page-header-container">
+        <i class="fas fa-mug-hot fa-2x tm-page-icon"></i>
+        <h1 class="tm-page-header">{{ title }}</h1>
+      </div>
+      <div class="tm-main-content">
+        <div id="tm-intro-img"></div>
+		{% block content %}{% endblock %}  
+     </div>
+      <footer>
+        <p class="tm-text-white tm-footer-text">
+          Copyright &copy; 2020 www.whoispython.com 
+          . Design:
+          <a href="https://www.whoispython.com " class="tm-footer-link">www.whoispython.com</a>
+        </p>
+      </footer>
+    </div>
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script>
+      $(function() {
+        // Adjust intro image height based on width.
+        $(window).resize(function() {
+          var img = $("#tm-intro-img");
+          var imgWidth = img.width();
+
+          // 640x425 ratio
+          var imgHeight = (imgWidth * 425) / 640;
+
+          if (imgHeight < 300) {
+            imgHeight = 300;
+          }
+
+          img.css("min-height", imgHeight + "px");
+        });
+      });
+    </script>
+  </body>
+</html>
